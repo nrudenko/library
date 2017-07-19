@@ -16,7 +16,7 @@ db = Database()
 def create_app():
     """Create app factory method."""
     app = Flask(__name__)
-    app.config.from_pyfile(os.environ['LIBRARY_CONF'])
+    app.config.from_pyfile(os.getenv('LIBRARY_CONF', '/etc/library/config'))
 
     init_app(app)
     init_admin_panel(app)

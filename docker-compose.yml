@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+ web:
+   restart: always
+   build: ./web
+   expose:
+     - "80"
+   ports:
+     - "80:80"
+   env_file: ./web/.env
+   command: 'bash -c "python manage.py db upgrade && python manage.py runserver -h 0.0.0.0 -p 80"'
+   links:
+    - postgres:postgres
+   depends_on:
+     - postgres
+
+ data:
+   image: postgres:9.6.3
+   volumes:
+     - /var/lib/postgresql
+   command: "true"
+
+ postgres:
+   restart: always
+   build: ./postgresql
+   env_file: ./postgresql/.env
+   volumes_from:
+     - data
+   ports:
+     - "5432:5432"
