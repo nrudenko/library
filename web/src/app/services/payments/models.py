@@ -16,11 +16,11 @@ class Order(db.Base):
     __tablename__ = 'order'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(ForeignKey(u'user.id', ondelete=u'CASCADE', onupdate=u'CASCADE'), nullable=False)
+    library_user_id = Column(ForeignKey(u'library_user.id', ondelete=u'CASCADE', onupdate=u'CASCADE'), nullable=False)
     created_at = Column(Date, nullable=False, default=datetime.datetime.utcnow)
     close_date = Column(Date)
 
-    user = relationship(u'User')
+    library_user = relationship(u'LibraryUser')
 
 
 class OrderItem(db.Base):

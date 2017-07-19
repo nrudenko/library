@@ -12,15 +12,15 @@ class AuthCredential(db.Base):
     __tablename__ = 'auth_credential'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(ForeignKey(u'user.id'), nullable=False)
+    library_user_id = Column(ForeignKey(u'library_user.id'), nullable=False)
     password_hash = Column(String(255), nullable=False)
     created_at = Column(Date, nullable=False, default=datetime.datetime.utcnow)
 
-    user = relationship(u'User')
+    library_user = relationship(u'LibraryUser')
 
 
-class User(db.Base):
-    __tablename__ = 'user'
+class LibraryUser(db.Base):
+    __tablename__ = 'library_user'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     email = Column(Text, nullable=False, unique=True)
@@ -42,13 +42,13 @@ class Role(db.Base):
     title = Column(Integer, nullable=False)
 
 
-class UserRole(db.Base):
-    __tablename__ = 'user_role'
+class LibraryUserRole(db.Base):
+    __tablename__ = 'library_user_role'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    user_id = Column(ForeignKey(u'user.id'), nullable=False)
+    library_user_id = Column(ForeignKey(u'library_user.id'), nullable=False)
     role_id = Column(ForeignKey(u'role.id'), nullable=False)
 
     role = relationship(u'Role')
-    user = relationship(u'User')
+    library_user = relationship(u'LibraryUser')
 

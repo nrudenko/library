@@ -13,10 +13,10 @@ class Following(db.Base):
     __tablename__ = 'following'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    owner_id = Column(ForeignKey(u'user.id', ondelete=u'CASCADE', onupdate=u'CASCADE'), nullable=False)
-    user_id = Column(ForeignKey(u'user.id', ondelete=u'CASCADE', onupdate=u'CASCADE'), nullable=False)
+    owner_id = Column(ForeignKey(u'library_user.id', ondelete=u'CASCADE', onupdate=u'CASCADE'), nullable=False)
+    library_user_id = Column(ForeignKey(u'library_user.id', ondelete=u'CASCADE', onupdate=u'CASCADE'), nullable=False)
     created_at = Column(Date, nullable=False, default=datetime.datetime.utcnow)
 
-    owner = relationship(u'User', primaryjoin='Following.owner_id == User.id')
-    user = relationship(u'User', primaryjoin='Following.user_id == User.id')
+    owner = relationship(u'LibraryUser', primaryjoin='Following.owner_id == LibraryUser.id')
+    library_user = relationship(u'LibraryUser', primaryjoin='Following.library_user_id == LibraryUser.id')
 

@@ -11,13 +11,11 @@ class Rent(db.Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     book_id = Column(ForeignKey(u'book.id'), nullable=False)
-    user_id = Column(ForeignKey(u'user.id'), nullable=False)
+    library_user_id = Column(ForeignKey(u'library_user.id'), nullable=False)
     start_date = Column(Date, nullable=False)
     end_date = Column(Date, nullable=False)
-    close_date = Column(Date, nullable=False)
-    book_price_id = Column(ForeignKey(u'book_price.id'), nullable=False)
+    close_date = Column(Date)
     created_at = Column(Date, nullable=False, default=datetime.datetime.utcnow)
 
     book = relationship(u'Book')
-    book_price = relationship(u'BookPrice')
-    user = relationship(u'User')
+    library_user = relationship(u'LibraryUser')

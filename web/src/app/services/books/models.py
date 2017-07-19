@@ -20,7 +20,14 @@ class Book(db.Base):
     name = Column(Text, nullable=False)
     short_description = Column(Text, nullable=False)
     release_date = Column(Date, nullable=False)
+    price = Column(Float, nullable=False, default=0)
     created_at = Column(Date, nullable=False, default=datetime.datetime.utcnow)
+
+    def __repr__(self):
+        try:
+            return '{name} {price}$'.format(**self.__dict__)
+        except:
+            return self.__repr__()
 
 
 class Author(db.Base):
@@ -42,16 +49,8 @@ class AuthorBook(db.Base):
     author = relationship(u'Author')
     book = relationship(u'Book')
 
-
-class BookPrice(db.Base):
-    __tablename__ = 'book_price'
-
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    book_id = Column(ForeignKey(u'book.id', ondelete=u'CASCADE', onupdate=u'CASCADE'), nullable=False)
-    value = Column(Float, nullable=False)
-    created_at = Column(Date, nullable=False, default=datetime.datetime.utcnow)
-
-    book = relationship(u'Book')
+    def __repr__(self):
+        return '{value}'.format(**self.__dict__)
 
 
 class Review(db.Base):
@@ -60,8 +59,8 @@ class Review(db.Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     rate = Column(Integer, nullable=False)
     text = Column(Text)
-    user_id = Column(ForeignKey(u'user.id'), nullable=False)
+    library_user_id = Column(ForeignKey(u'library_user.id'), nullable=False)
     book_id = Column(ForeignKey(u'book.id', ondelete=u'CASCADE', onupdate=u'CASCADE'), nullable=False)
 
     book = relationship(u'Book')
-    user = relationship(u'User')
+    library_user = relationship(u'LibraryUser')
