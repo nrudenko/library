@@ -2,7 +2,7 @@
 """Library api endpoints."""
 from flask.blueprints import Blueprint
 
-user_bp = Blueprint('auth', __name__, url_prefix='/api')
+user_bp = Blueprint('user', __name__, url_prefix='/api')
 
 
 @user_bp.route('/')
