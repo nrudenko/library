@@ -13,17 +13,17 @@ Sample of python API project implementation
 
 The application contains two part:
 *  admin_panel `http://host/admin/` - for adding test data (users, books, rents)
-*  books get endpoint `http://host/api?name=Jhon` - endpoint for getting books with same price as second rented book by user
+*  books get endpoint `http://host/api?name=John` - endpoint for getting books with same price as second rented book by user
 
   
 ## Usage
 You can start project locally:
-`docker-composer up`
+$ `docker-composer up`
 In this case parts are available:
-`http://localhost/admin`
-`http://localhost/api/book?name={any_user_name}`
+* http://localhost/admin
+* http://localhost/api/book?name=John
 
 Or use already deployed to Google Cloud instance:
 
-http://104.154.193.227/admin
-http://104.154.193.227/api/book?name=Jhon
+* http://104.154.193.227/admin
+* http://104.154.193.227/api/book?name=John
