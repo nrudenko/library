@@ -27,3 +27,7 @@ Or use already deployed to Google Cloud instance:
 
 * http://104.154.193.227/admin
 * http://104.154.193.227/api/book?name=John
+
+
+## Query implementation
+[web/src/app/services/books/controller.py](https://github.com/nrudenko/library/blob/master/web/src/app/services/books/controller.py)
